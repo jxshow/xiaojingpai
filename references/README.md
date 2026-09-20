@@ -58,6 +58,19 @@ https://docs.qq.com/doc/XXXX
 3. **不擅自改写原文**：文字、顺序、数字、链接一律保真；只做排版和既有的强调。
 4. `.env` 含明文密钥，不进仓库、不发截图、不传公开网盘。
 
+## 仓库
+
+三个自建 skill 都在 GitHub（私有），可以 clone 到任何电脑：
+
+| skill | 仓库 |
+|---|---|
+| `jingxuan-publish-flow` | `jxshow/jingxuan-publish-flow` |
+| `jingxuan-ai-gzh` | `jxshow/jingxuan-ai-gzh` |
+| `jingxuan-draft-push` | `jxshow/jingxuan-draft-push` |
+
+凭据 `.env` **不在任何仓库里**，换机器要单独搬。
+
 ## 换电脑
 
-见 `install.md`。三步：复制 4 个 skill 目录 → 放好 `.env` → 把新机器的公网 IP 加进公众号后台白名单。
+见 `install.md`。三种方式任选：从 GitHub clone（推荐，可随时 pull 更新）、用打包 zip、直接拷目录。
+无论哪种，最后都要放好 `.env` + 把新机器的公网 IP 加进公众号后台白名单。
