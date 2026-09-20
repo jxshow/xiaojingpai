@@ -1,20 +1,19 @@
 # -*- coding: utf-8 -*-
-"""make_bundle.py —— 把整条「鲸选AI 公众号发布」链路打包成一个可搬运的 zip。
+"""make_bundle.py —— 把整条「小鲸排 Skill」链路打包成一个可搬运的 zip。
 
 换电脑时，这个 zip 解开 + 复制凭据 = 完整环境，不需要重新摸索。
 
 用法:
     python make_bundle.py                              # 默认输出到 ~/.workbuddy/bundles/
-    python make_bundle.py --out "D:/公众号流水线.zip"
+    python make_bundle.py --out "D:/小鲸排.zip"
     python make_bundle.py --with-env                   # ⚠️ 连凭据一起打包（含明文密钥）
 
 打包内容:
-    skills/jingxuan-publish-flow  总控 SOP（本 skill）
-    skills/jingxuan-ai-gzh   排版引擎（4 套主题 + 渲染器）
-    skills/jingxuan-draft-push      官方 API 推送 + 封面生成
-    skills/gzh-design-skill  上游原版，提供 validate_gzh_html.py 合规校验
-    README.md / 口令卡.md     用法与口令
-    install.md               新机器安装步骤
+    skills/xiaojingpai          总控 SOP + 通用脚本（本 skill，含合规校验器）
+    skills/xiaojingpai-render   排版引擎（4 套主题 + 渲染器）
+    skills/xiaojingpai-push     官方 API 推送 + 封面生成
+    README.md / 口令卡.md        用法与口令
+    install.md                  新机器安装步骤
 
 默认**不含** .env —— 明文密钥不该随手进网盘。需要时显式 --with-env。
 """
@@ -33,10 +32,9 @@ SKILLS_DIR = os.path.join(HOME, ".workbuddy", "skills")
 ENV_PATH = os.path.join(HOME, ".workbuddy", "wechat", ".env")
 
 BUNDLE_SKILLS = [
-    "jingxuan-publish-flow",   # 总控（必须）
-    "jingxuan-ai-gzh",    # 排版（必须）
-    "jingxuan-draft-push",       # 推送（必须）
-    "gzh-design-skill",   # 提供 validate_gzh_html.py（必须）
+    "xiaojingpai",          # 总控 + 合规校验（必须）
+    "xiaojingpai-render",   # 排版（必须）
+    "xiaojingpai-push",     # 推送（必须）
 ]
 
 # 不打包的目录/文件
@@ -60,7 +58,7 @@ def main():
 
     stamp = datetime.now().strftime("%Y%m%d")
     out = args.out or os.path.join(HOME, ".workbuddy", "bundles",
-                                   "jingxuan-publish-flow-%s.zip" % stamp)
+                                   "xiaojingpai-%s.zip" % stamp)
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
 
     missing = [s for s in BUNDLE_SKILLS if not os.path.isdir(os.path.join(SKILLS_DIR, s))]
@@ -86,10 +84,10 @@ def main():
 
         # 说明文件
         for doc in ("README.md", "口令卡.md"):
-            src = os.path.join(SKILLS_DIR, "jingxuan-publish-flow", "references", doc)
+            src = os.path.join(SKILLS_DIR, "xiaojingpai", "references", doc)
             if os.path.exists(src):
                 zf.write(src, doc)
-        install = os.path.join(SKILLS_DIR, "jingxuan-publish-flow", "references", "new-machine-setup.md")
+        install = os.path.join(SKILLS_DIR, "xiaojingpai", "references", "new-machine-setup.md")
         if os.path.exists(install):
             zf.write(install, "install.md")
 

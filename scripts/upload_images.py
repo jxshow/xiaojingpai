@@ -36,7 +36,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 API_TOKEN = "https://api.weixin.qq.com/cgi-bin/token"
 API_STABLE_TOKEN = "https://api.weixin.qq.com/cgi-bin/stable_token"
 API_UPLOADIMG = "https://api.weixin.qq.com/cgi-bin/media/uploadimg"
-UA = "Mozilla/5.0 (jingxuan-publish-flow)"
+UA = "Mozilla/5.0 (xiaojingpai)"
 LIMIT = 1000 * 1000  # uploadimg 上限 1MB
 
 # 凭据查找顺序：环境变量 > WECHAT_ENV_FILE > 用户级凭据目录 > 旧工作区

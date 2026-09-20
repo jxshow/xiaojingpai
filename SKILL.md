@@ -1,17 +1,20 @@
 ---
-name: jingxuan-publish-flow
-description: 鲸选AI 公众号「排版 → 配图 → 重点标注 → 推送草稿箱」全流程总控。把腾讯文档/Word/Markdown 变成可发布的公众号文章并写进草稿箱。当用户说「排版并推送到公众号」「把这篇推到草稿箱」「排这篇推草稿箱」「用AGI绿排版这篇」「配图 + 重点标粗下划线」「一键发布」「整理并推草稿」，或同时给出文章链接 + 公众号/草稿箱/草稿/鲸选AI 字样时使用。用户只说中文即可，不需要说出任何 skill 名。本文是入口 SOP，具体排版规则读 jingxuan-ai-gzh，推送细节读 jingxuan-draft-push。禁止用浏览器扫码登录 mp.weixin.qq.com。
+name: xiaojingpai
+description: 小鲸排 Skill —— 鲸选AI 公众号「排版 → 配图 → 重点标注 → 推送草稿箱」全流程总控。把腾讯文档/Word/Markdown 变成可发布的公众号文章并写进草稿箱。当用户说「小鲸排」「排版并推送到公众号」「把这篇推到草稿箱」「排这篇推草稿箱」「用AGI绿排版这篇」「配图 + 重点标粗下划线」「一键发布」「整理并推草稿」，或同时给出文章链接 + 公众号/草稿箱/草稿/鲸选AI 字样时使用。用户只说中文即可，不需要说出任何 skill 名。本文是入口 SOP，具体排版规则读 xiaojingpai-render，推送细节读 xiaojingpai-push。禁止用浏览器扫码登录 mp.weixin.qq.com。
 agent_created: true
 ---
 
-# 鲸选AI 公众号发布流水线（总控）
+# 小鲸排 Skill · 鲸选AI 公众号发布流水线（总控）
+
+中文名「小鲸排 Skill」，英文名 `xiaojingpai`。三个 skill 是一套：
+`xiaojingpai`（总控·本文件）/ `xiaojingpai-render`（排版引擎）/ `xiaojingpai-push`（草稿推送）。
 
 这是**入口**。收到任务先读本文确定顺序，再按需读另外两个 skill：
 
 | 需要 | 读 |
 |---|---|
-| 主题配方、article.json 字段、渲染器 | skill `jingxuan-ai-gzh`（+ 其 `references/theme-index.md`、`input-and-ir.md`） |
-| 草稿接口、封面、图片上传、token 坑 | skill `jingxuan-draft-push`（+ 其 `references/pipeline-notes.md`） |
+| 主题配方、article.json 字段、渲染器 | skill `xiaojingpai-render`（+ 其 `references/theme-index.md`、`input-and-ir.md`） |
+| 草稿接口、封面、图片上传、token 坑 | skill `xiaojingpai-push`（+ 其 `references/pipeline-notes.md`） |
 | 用户视角的说法与默认值 | 本 skill 的 `references/口令卡.md` |
 | 换电脑 | 本 skill 的 `references/new-machine-setup.md` |
 
@@ -24,9 +27,9 @@ export PATH="/usr/bin:/bin:/c/Windows/System32:$PATH"   # Git Bash 否则 dirnam
 export PYTHONIOENCODING=utf-8                            # 中文不乱码
 PY="C:/Users/xhshow/.workbuddy/binaries/python/versions/3.13.12/python.exe"
 VP="C:/Users/xhshow/.workbuddy/binaries/python/envs/default/Scripts/python.exe"   # 带 Pillow，封面/配图用
-FLOW="C:/Users/xhshow/.workbuddy/skills/jingxuan-publish-flow/scripts"
-JX="C:/Users/xhshow/.workbuddy/skills/jingxuan-ai-gzh"
-PUSH="C:/Users/xhshow/.workbuddy/skills/jingxuan-draft-push/scripts"
+FLOW="C:/Users/xhshow/.workbuddy/skills/xiaojingpai/scripts"
+JX="C:/Users/xhshow/.workbuddy/skills/xiaojingpai-render"
+PUSH="C:/Users/xhshow/.workbuddy/skills/xiaojingpai-push/scripts"
 ```
 
 路径一律写 `C:/...`，**不要** `/c/...`（会被拼成 `d:\c\...`）。Bash 里用 `C:/...` 传给 Windows 程序没问题。
@@ -50,7 +53,7 @@ PUSH="C:/Users/xhshow/.workbuddy/skills/jingxuan-draft-push/scripts"
 
 ### ② 写 article.base.json
 
-按 `jingxuan-ai-gzh/references/input-and-ir.md` 的字段规范。要点：
+按 `xiaojingpai-render/references/input-and-ir.md` 的字段规范。要点：
 
 - `theme` 填主题 ID（见下表）
 - 每段 `runs` **先合并成单个 run**，强调交给第 ⑤ 步统一打，避免多 run 文本错位
@@ -72,7 +75,7 @@ node "$JX/scripts/render_article.mjs" "<文章目录>/article.json" --out "<文�
 ### ④ 合规校验（推送前必做）
 
 ```bash
-"$PY" "C:/Users/xhshow/.workbuddy/skills/gzh-design-skill/scripts/validate_gzh_html.py" \
+"$PY" "$FLOW/validate_html.py" \
       "<文章目录>/build/article.html"
 ```
 
@@ -229,6 +232,6 @@ H3 的黑粗字自带 2px 绿底线，不要额外加 `underline`。
 | `scripts/apply_marks.py` | 强调 / 说明卡 / 配图注入 article.json（可重复执行） |
 | `scripts/upload_images.py` | 压缩并上传配图，换 mmbiz 地址 |
 | `scripts/make_bundle.py` | 打包整条链路成 zip，用于换电脑 |
-| `jingxuan-draft-push/scripts/push_to_wechat_draft.py` | 草稿箱推送（含覆盖保护） |
-| `jingxuan-draft-push/scripts/make_cover.py` | 主题色封面 |
-| `gzh-design-skill/scripts/validate_gzh_html.py` | 合规校验 |
+| `xiaojingpai-push/scripts/push_to_wechat_draft.py` | 草稿箱推送（含覆盖保护） |
+| `xiaojingpai-push/scripts/make_cover.py` | 主题色封面 |
+| `xiaojingpai/scripts/validate_html.py` | 合规校验（已内联，无需额外装） |

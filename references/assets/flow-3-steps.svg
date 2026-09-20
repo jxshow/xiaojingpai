@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="272" viewBox="0 0 680 272" font-family="'Microsoft YaHei','PingFang SC','Hiragino Sans GB',sans-serif">
+<title>小鲸排 Skill：一句中文口令到草稿箱的三步</title>
+<desc>一句中文口令，依次经过排版、配图标重点、写入草稿箱三步，内部 skill 名全程无需输入。</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="680" height="272" fill="#ffffff"/>
+<text x="40" y="22" font-size="13" font-weight="500" fill="#5F5E5A">小鲸排 Skill · 一句中文口令，三步到草稿箱</text>
+<rect x="40" y="40" width="600" height="64" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="64" y="66" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">用 AGI绿 排版这篇，配图 + 重点标粗下划线，推到草稿箱</text>
+<text x="64" y="88" font-size="12" fill="#5F5E5A" dominant-baseline="central">一句中文就够，不需要出现任何 skill 名</text>
+<path d="M340 104 L340 134" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="40" y="140" width="170" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="125" y="158" font-size="14" font-weight="500" fill="#27500A" text-anchor="middle" dominant-baseline="central">1 排版</text>
+<text x="125" y="176" font-size="12" fill="#3B6D11" text-anchor="middle" dominant-baseline="central">4 套主题任选</text>
+<rect x="255" y="140" width="170" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="340" y="158" font-size="14" font-weight="500" fill="#27500A" text-anchor="middle" dominant-baseline="central">2 配图 + 标重点</text>
+<text x="340" y="176" font-size="12" fill="#3B6D11" text-anchor="middle" dominant-baseline="central">官方图 · 强调查</text>
+<rect x="470" y="140" width="170" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/>
+<text x="555" y="158" font-size="14" font-weight="500" fill="#27500A" text-anchor="middle" dominant-baseline="central">3 写进草稿箱</text>
+<text x="555" y="176" font-size="12" fill="#3B6D11" text-anchor="middle" dominant-baseline="central">封面 + 官方 API</text>
+<path d="M214 168 L249 168" fill="none" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M429 168 L464 168" fill="none" stroke="#3B6D11" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="40" y="222" font-size="12" fill="#5F5E5A" dominant-baseline="central">后台：读原文 → 渲染 HTML → 合规校验 → 抓官方图上传 → 打重点 → 生成封面 → 写草稿 → 回读核对</text>
+<text x="40" y="244" font-size="12" fill="#5F5E5A" dominant-baseline="central">内部英文名（xiaojingpai 等）只用来找文件，全程不用你打</text>
+</svg>

@@ -1,6 +1,20 @@
-# 鲸选AI 公众号发布流水线
+# 小鲸排 Skill
 
 把一篇腾讯文档，排成鲸选AI 风格的公众号文章，配好图和重点，直接写进公众号草稿箱。
+
+- **中文名**：小鲸排 Skill
+- **英文名**：`xiaojingpai`（拼音，三个 skill 共用这个前缀）
+- **一句话**：你说一句中文，它排版 → 配图 → 标重点 → 写进草稿箱
+
+## 它怎么干活（三步）
+
+![小鲸排 Skill 三步流程图](assets/flow-3-steps.png)
+
+一句中文口令进来，剩下全自动：
+
+1. **排版** —— 读腾讯文档原文（连「原文哪里加粗」都读出来，不靠猜），按主题渲染成公众号 HTML，跑合规校验
+2. **配图 + 标重点** —— 抓官方图上传到微信素材库，按准则标「整句加粗」和「关键词下划线」
+3. **写进草稿箱** —— 生成主题色封面，走官方 API 写入草稿箱，再回读核对微信没吞样式
 
 ## 平时怎么用
 
@@ -33,14 +47,13 @@ https://docs.qq.com/doc/XXXX
                                                         公众号草稿箱
 ```
 
-## 用了哪些 skill
+## 三个 skill 各管什么
 
-| skill | 作用 |
-|---|---|
-| `jingxuan-publish-flow` | 总控：流程、脚本、口令（**入口看这里**） |
-| `jingxuan-ai-gzh` | 排版引擎：4 套主题（字节绿 / AGI绿 / 杂志绿 / Pro蓝）+ 确定性渲染器 |
-| `jingxuan-draft-push` | 官方 API 推送草稿箱 + 主题色封面生成 |
-| `gzh-design-skill` | 上游原版，只用到它的 `validate_gzh_html.py` 合规校验 |
+| skill | 中文 | 作用 |
+|---|---|---|
+| `xiaojingpai` | 小鲸排 · 总控 | 流程、通用脚本、合规校验、口令（**入口看这里**） |
+| `xiaojingpai-render` | 小鲸排 · 排版引擎 | 4 套主题（字节绿 / AGI绿 / 杂志绿 / Pro蓝）+ 确定性渲染器 |
+| `xiaojingpai-push` | 小鲸排 · 草稿推送 | 官方 API 推送草稿箱 + 主题色封面生成 |
 
 ## 默认约定
 
@@ -57,22 +70,30 @@ https://docs.qq.com/doc/XXXX
 
 1. **只用官方 API 推草稿箱，不开浏览器扫码登录。**
 2. **`draft/update` 是整篇替换** —— 后台被手工改过就拒绝覆盖，先问再用 `--force`。
+   **后台的原创声明、合集、赞赏等标记会一起丢，要重新设。**
 3. **不擅自改写原文**：文字、顺序、数字、链接一律保真；只做排版和既有的强调。
 4. `.env` 含明文密钥，不进仓库、不发截图、不传公开网盘。
 
 ## 仓库
 
-三个自建 skill 都在 GitHub（私有），可以 clone 到任何电脑：
+三个 skill 都在 GitHub（私有），可以 clone 到任何电脑：
 
 | skill | 仓库 |
 |---|---|
-| `jingxuan-publish-flow` | `jxshow/jingxuan-publish-flow` |
-| `jingxuan-ai-gzh` | `jxshow/jingxuan-ai-gzh` |
-| `jingxuan-draft-push` | `jxshow/jingxuan-draft-push` |
+| `xiaojingpai` | `jxshow/xiaojingpai` |
+| `xiaojingpai-render` | `jxshow/xiaojingpai-render` |
+| `xiaojingpai-push` | `jxshow/xiaojingpai-push` |
 
 凭据 `.env` **不在任何仓库里**，换机器要单独搬。
 
 ## 换电脑
 
-见 `install.md`。三种方式任选：从 GitHub clone（推荐，可随时 pull 更新）、用打包 zip、直接拷目录。
+见 `new-machine-setup.md`。三种方式任选：从 GitHub clone（推荐，可随时 pull 更新）、用打包 zip、直接拷目录。
 无论哪种，最后都要放好 `.env` + 把新机器的公网 IP 加进公众号后台白名单。
+
+## 来源与许可
+
+排版引擎的工作流衍生自开源项目 [gzh-design-skill](https://github.com/isjiamu/gzh-design-skill)
+（作者 甲木 Jiamu / 摸鱼小李 Moyu Xiaoli，AGPL-3.0-or-later），保留其 LICENSE 与作者声明。
+合规校验脚本已内联进 `xiaojingpai/scripts/validate_html.py`（文件头标注了出处），
+因此**不再需要额外安装上游 skill**。渲染器、品牌主题与后续流水线为定制新增。
