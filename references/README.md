@@ -20,7 +20,7 @@ https://github.com/jxshow/xiaojingpai-push
 
 它会自己 clone、放对目录、检查运行时，缺什么会告诉你。装完**重启一次** Agent。需要你亲自做的只有一步：把公众号 AppID / AppSecret 写进 `~/.workbuddy/wechat/.env`（细节见 `new-machine-setup.md`）。
 
-> 三个仓库是私有仓库，需要这台机器有 GitHub 访问权限。
+> 三个仓库都是公开仓库，任何机器都能直接 clone，无需授权。
 
 ## 它怎么干活（三步）
 
@@ -92,7 +92,7 @@ https://docs.qq.com/doc/XXXX
 
 ## 仓库
 
-三个 skill 都在 GitHub（私有），可以 clone 到任何电脑：
+三个 skill 都在 GitHub（公开），可以 clone 到任何电脑：
 
 | skill | 仓库 |
 |---|---|

@@ -11,7 +11,7 @@
 
 ## 需要什么
 
-| # | 东西 | 位置（本机） | GitHub（私有） |
+| # | 东西 | 位置（本机） | GitHub（公开） |
 |---|---|---|---|
 | 1 | 总控 SOP + 合规校验 | `~/.workbuddy/skills/xiaojingpai` | `jxshow/xiaojingpai` |
 | 2 | 排版引擎（4 主题） | `~/.workbuddy/skills/xiaojingpai-render` | `jxshow/xiaojingpai-render` |
@@ -39,7 +39,7 @@ git clone https://github.com/jxshow/xiaojingpai-render.git
 git clone https://github.com/jxshow/xiaojingpai-push.git
 ```
 
-⚠️ 三个仓库都是**私有**的，新机器上第一次 clone 会要求登录 GitHub（浏览器授权或用 Personal Access Token）。
+三个仓库都是**公开**的，直接 clone 即可，无需登录 GitHub。
 
 以后在这台机器改了东西，`git add -A && git commit -m "..." && git push`；
 在另一台机器 `git pull` 即可同步。**不要把 .env 放进仓库。**
