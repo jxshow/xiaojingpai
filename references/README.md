@@ -6,6 +6,22 @@
 - **英文名**：`xiaojingpai`（拼音，三个 skill 共用这个前缀）
 - **一句话**：你说一句中文，它排版 → 配图 → 标重点 → 写进草稿箱
 
+## 怎么装（一句话，让 Agent 自己装）
+
+不用自己下载。打开你的办公 Agent，发这一句：
+
+```
+帮我装这三个 skill：从 GitHub 克隆到 skills 目录，装完检查依赖、告诉我怎么用。
+
+https://github.com/jxshow/xiaojingpai
+https://github.com/jxshow/xiaojingpai-render
+https://github.com/jxshow/xiaojingpai-push
+```
+
+它会自己 clone、放对目录、检查运行时，缺什么会告诉你。装完**重启一次** Agent。需要你亲自做的只有一步：把公众号 AppID / AppSecret 写进 `~/.workbuddy/wechat/.env`（细节见 `new-machine-setup.md`）。
+
+> 三个仓库是私有仓库，需要这台机器有 GitHub 访问权限。
+
 ## 它怎么干活（三步）
 
 ![小鲸排 Skill 三步流程图](assets/flow-3-steps.png)

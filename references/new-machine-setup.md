@@ -3,6 +3,12 @@
 整条链路叫 **小鲸排 Skill**（英文名 `xiaojingpai`），由 **3 个 skill + 1 份凭据** 组成。
 换机器只搬这 4 样，别的一概不用管。
 
+> **最省事的方式**：新机器上直接跟 Agent 说
+> 「帮我装这三个 skill：`https://github.com/jxshow/xiaojingpai`、
+> `https://github.com/jxshow/xiaojingpai-render`、`https://github.com/jxshow/xiaojingpai-push`，
+> 装完检查依赖、把 `~/.workbuddy/wechat/.env` 也接过来」——它会自己 clone 和检查。
+> 本文是手动操作的完整步骤，留给 Agent 帮不上忙、或你想自己确认细节的时候。
+
 ## 需要什么
 
 | # | 东西 | 位置（本机） | GitHub（私有） |
