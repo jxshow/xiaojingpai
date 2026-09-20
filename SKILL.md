@@ -1,6 +1,6 @@
 ---
 name: jingxuan-publish-flow
-description: 鲸选AI 公众号「排版 → 配图 → 重点标注 → 推送草稿箱」全流程总控。把腾讯文档/Word/Markdown 变成可发布的公众号文章并写进草稿箱。当用户说「排版并推送到公众号」「把这篇推到草稿箱」「用AGI绿排版这篇」「一键发布」「整理并推草稿」，或同时给出文章链接 + 公众号/草稿箱/鲸选AI 字样时使用。本文是入口 SOP，具体排版规则读 jingxuan-ai-gzh，推送细节读 jingxuan-draft-push。禁止用浏览器扫码登录 mp.weixin.qq.com。
+description: 鲸选AI 公众号「排版 → 配图 → 重点标注 → 推送草稿箱」全流程总控。把腾讯文档/Word/Markdown 变成可发布的公众号文章并写进草稿箱。当用户说「排版并推送到公众号」「把这篇推到草稿箱」「排这篇推草稿箱」「用AGI绿排版这篇」「配图 + 重点标粗下划线」「一键发布」「整理并推草稿」，或同时给出文章链接 + 公众号/草稿箱/草稿/鲸选AI 字样时使用。用户只说中文即可，不需要说出任何 skill 名。本文是入口 SOP，具体排版规则读 jingxuan-ai-gzh，推送细节读 jingxuan-draft-push。禁止用浏览器扫码登录 mp.weixin.qq.com。
 agent_created: true
 ---
 
