@@ -91,6 +91,12 @@ def main():
         if os.path.exists(install):
             zf.write(install, "install.md")
 
+        # README / 口令卡 里引用的示意图
+        shot = os.path.join(SKILLS_DIR, "xiaojingpai", "references", "assets", "flow-3-steps.png")
+        if os.path.exists(shot):
+            zf.write(shot, os.path.join("assets", "flow-3-steps.png"))
+            count += 1
+
         if args.with_env:
             if not os.path.exists(ENV_PATH):
                 sys.exit("x --with-env 指定了但找不到凭据文件: %s" % ENV_PATH)
