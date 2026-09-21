@@ -5,8 +5,14 @@ ready/
 uploaded.json
 
 # 微信凭据/状态（**含 access_token，绝不能提交**）
+.env
+.env.*
+!.env.example
 .wechat_token_cache.json
 .wechat_push_state.json
+*.pem
+*.key
+*.p12
 
 # 编辑器 / 系统
 .DS_Store
